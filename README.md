@@ -1,9 +1,13 @@
 <p align="center">
-   <img src="jsninja.png" width="200" height="200">
+   <img src="jsninja_gh.png" width="500" height="400">
+</p>
+
+<p align="center">
+   🕵️‍♂️🔍 WebQL
 </p>
 
 
-# 🕵️‍♂️🔍 WebQL 
+
 
 WebQL is an automated JavaScript analysis engine and workflow orchestration framework for modern web application analysis. It combines the power of static analysis tools like CodeQL with dynamic scanning capabilities to provide comprehensive security insights for web applications.
 
