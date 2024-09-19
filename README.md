@@ -23,21 +23,35 @@ WebQL is an automated JavaScript analysis engine and workflow orchestration fram
 
 ## 🛠️ Installation
 
-1. To install WebQL in editable mode, which is useful for development:
+1. To install WebQL and it's dependencies using Poetry, which is useful for development:
 
 ```
 git clone https://github.com/queencitycyber/webql
 cd webql
-pip install -e .
+poetry install
 ```
 
-2. For a more isolated installation, you can use pipx:
+2. Activate the virtual environment created by Poetry:
 
 ```
-pipx install git+https://github.com/queencitycyber/webql
+poetry shell
 ```
 
-3. Docker installation:
+3. Alternatively, you can run WebQL commands without activating the virtual environment by prefixing them with `poetry run`:
+
+```
+poetry run webql scan https://example.com
+```
+
+4. If you don't have or don't want to use Poetry, you can use `pipx`:
+
+```
+git clone https://github.com/queencitycyber/webql
+cd webql
+pipx install .
+```
+
+5. Docker installation:
 
 ... not just yet, but see [Microsoft's codeql-container](https://github.com/microsoft/codeql-container)? Untested but passes sniff test!
 
@@ -55,6 +69,27 @@ Or:
 python -m webql
 ```
 
+### Help Menu
+
+```
+Usage: webql [OPTIONS] COMMAND [ARGS]...
+
+  WebQL: An automated JavaScript analysis engine and workflow orchestration
+  framework.
+
+Options:
+  --debug        Enable debug logging
+  --config PATH  Path to config file
+  --help         Show this message and exit.
+
+Commands:
+  full-analysis  Perform a full analysis on a given URL.
+  generate       Generate a CodeQL database for JavaScript analysis.
+  parse          Parse files using CodeQL.
+  results        Parse and display vulnerability results from a SARIF file.
+  scan           Scan URLs or files for JavaScript + webpack & sourcemaps.
+  secrets        JS secret and juicy bit scanning.
+```
 
 WebQL provides several commands for different stages of analysis.
 
@@ -233,7 +268,7 @@ By regularly using and updating these examples, we can ensure that WebQL remains
 We're constantly working to improve WebQL. Here are some features we're planning to implement:
 
 
-🔪 ~~Webcrack~~ (DONE) & Wakaru coming soon!
+🔪 ~~Webcrack~~ & Wakaru coming soon!
 
 🌐 Support for additional JavaScript frameworks and libraries
 
