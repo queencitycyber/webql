@@ -152,7 +152,7 @@ This command will scan the URL, generate a CodeQL database, perform analysis, an
 Full trial run of OWASP's Juice Shop (excuse the loquacious output, you can turn off in the code if you'd like:) :
 
 ```
-bullrun@ssec:$ webql full-analysis https://juice-shop.herokuapp.com
+webql full-analysis https://juice-shop.herokuapp.com
 ```
 
 ![image](https://github.com/user-attachments/assets/8aa61c44-cc0b-438c-a2a3-f6cbb57a84b2)
