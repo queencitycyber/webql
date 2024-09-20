@@ -1,15 +1,18 @@
+<h1 align="center">🕵️‍♂️🔍 WebQL</h1>
+
+
 <p align="center">
    <img src="jsninja_gh.png" width="500" height="400">
 </p>
 
-<p align="center">
-   🕵️‍♂️🔍 WebQL
-</p>
+
 
 
 
 
 WebQL is an automated JavaScript analysis engine and workflow orchestration framework for modern web application analysis. It combines the power of static analysis tools like CodeQL with dynamic scanning capabilities to provide comprehensive security insights for web applications.
+
+Check out the blog post [WebQL: Using CodeQL To Conduct JavaScript Security Analysis Against Modern Web Applications ](WebQL: Using CodeQL To Conduct JavaScript Security Analysis Against Modern Web Applications ) for more details on how it works. 
 
 ## 🌟 Features
 
