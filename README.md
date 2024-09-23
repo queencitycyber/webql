@@ -12,7 +12,7 @@
 
 WebQL is an automated JavaScript analysis engine and workflow orchestration framework for modern web application analysis. It combines the power of static analysis tools like CodeQL with dynamic scanning capabilities to provide comprehensive security insights for web applications.
 
-Check out the blog post [WebQL: Using CodeQL To Conduct JavaScript Security Analysis Against Modern Web Applications ](https://www.sprocketsecurity.com/resources) for more details on how it works. 
+Check out the blog post [WebQL: Using CodeQL To Conduct JavaScript Security Analysis Against Modern Web Applications ](https://www.sprocketsecurity.com/resources/webql-using-codeql-to-conduct-javascript-security-analysis-against-modern-web-applications) for more details on how it works. 
 
 ## 🌟 Features
 
