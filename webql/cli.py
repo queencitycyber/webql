@@ -84,8 +84,6 @@ def run_trufflehog(target, output_dir):
         raise Exception(f"Error scanning for secrets: {error}")
     log.info(f"Secrets scanning completed. Results saved to {output_file}")
 
-
-
 @click.group()
 @click.option("--debug", is_flag=True, help="Enable debug logging")
 @click.option("--config", type=click.Path(exists=True), help="Path to config file")
@@ -99,7 +97,6 @@ def cli(ctx, debug, config):
     ctx.ensure_object(dict)
     ctx.obj["config"] = Config(config_path=config)
     log.debug(f"Loaded configuration: {ctx.obj['config']}")
-
 
 @cli.command()
 @click.argument("targets", nargs=-1, required=False)
@@ -149,8 +146,6 @@ def scan(ctx, targets, output_dir, aggressive, verbose, secrets, url_file):
         log.error(f"WebQL Error: {str(e)}")
     except Exception as e:
         log.error(f"Unexpected error: {str(e)}")
-
-
 
 @cli.command()
 @click.argument('url')
