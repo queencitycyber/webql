@@ -194,6 +194,28 @@ webql parse ./sample_db --output-file sample_results.sarif
 webql results sample_results.sarif
 ```
 
+##### Scanning JavaScript URLs from a File
+
+WebQL now supports scanning multiple JavaScript URLs provided in a text file. This feature allows for batch processing of JavaScript files from various sources.
+
+To use this feature:
+
+1. Create a text file (e.g., `js_urls.txt`) containing one JavaScript URL per line.
+2. Run the scan command with the `--url-file` option: `webql scan --url-file js_urls.txt --output-dir ./output`
+
+This command will:
+- Read JavaScript URLs from the specified file
+- Download and process each JavaScript file
+- Beautify the downloaded JavaScript
+- Run Webcrack analysis on each file
+- Save the results in the specified output directory
+
+3. After scanning, you can analyze the downloaded files using the following commands:
+
+```
+webql generate ./output --db-name js_analysis webql parse ./output/js_analysis --output-file results.sarif webql results results.sarif
+```
+This  feature enhances WebQL's capability to handle multiple JavaScript sources efficiently, making it easier to perform bulk analysis of JavaScript files from various web applications.
 
 ##### Full Analysis of a Test Website
 
