@@ -12,7 +12,8 @@ from .webcrack_analyzer import WebcrackAnalyzer
 console = Console()
 
 class JavaScriptAnalyzer:
-    def __init__(self, base_url, output_dir, aggressive=False, verbose=False):
+    def __init__(self, targets, base_url, output_dir, aggressive=False, verbose=False):
+        self.targets = targets
         self.base_url = base_url
         self.output_dir = Path(output_dir)
         self.aggressive = aggressive
@@ -27,9 +28,10 @@ class JavaScriptAnalyzer:
     def scan(self):
         self.output_dir.mkdir(parents=True, exist_ok=True)
         with self.progress:
-            self.main_task_id = self.progress.add_task("[green]Scanning...", total=1)
-            self._scan_url(self.base_url)
-        console.print("[bold green]Scan completed![/bold green]")
+            self.main_task_id = self.progress.add_task("[green]Scanning...", total=len(self.targets))
+            for target in self.targets:
+                self._scan_url(target)
+        console.print("[bold green]Scan completed![/bold green]")   
 
     def _scan_url(self, url):
         if url in self.visited_urls:
