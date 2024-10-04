@@ -12,6 +12,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.traceback import install
 
+from .analyzers.javascript_analyzer import JavaScriptAnalyzer
 from .commands.generate import generate_command
 from .commands.parse import parse_command
 from .commands.results import results_command
@@ -101,7 +102,12 @@ def cli(ctx, debug, config):
 
 
 @cli.command()
-@click.argument("targets", nargs=-1, required=True)
+@click.argument("targets", nargs=-1, required=False)
+@click.option(
+    '--url-file',
+    type=click.Path(exists=True),
+    help='Path to a file containing JavaScript URLs to scan'
+)
 @click.option(
     "--output-dir",
     "-o",
@@ -116,15 +122,21 @@ def cli(ctx, debug, config):
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose output")
 @click.option("--secrets", "-s", is_flag=True, help="Run secrets scanning modules")
 @click.pass_context
-def scan(ctx, targets, output_dir, aggressive, verbose, secrets):
-    """Scan URLs or files for JavaScript + webpack & sourcemaps."""
+def scan(ctx, targets, output_dir, aggressive, verbose, secrets, url_file):
     try:
-        for target in targets:
-            if not check_url_status(target):
-                return
+        targets = list(targets)
+        if url_file:
+            with open(url_file, 'r') as f:
+                js_urls = [line.strip() for line in f if line.strip()]
+            targets.extend(js_urls)
+
+        if not targets:
+            raise click.UsageError("At least one target URL or --url-file must be provided.")
 
         log.info(f"Starting scan of {len(targets)} target(s)")
-        scan_command(targets, output_dir, aggressive, verbose)
+        analyzer = JavaScriptAnalyzer(targets, targets[0] if targets else '', output_dir, aggressive=aggressive, verbose=verbose)
+
+        analyzer.scan()
         log.info(f"Scan completed. Results saved to {output_dir}")
 
         if secrets:
@@ -136,7 +148,8 @@ def scan(ctx, targets, output_dir, aggressive, verbose, secrets):
     except WebQLException as e:
         log.error(f"WebQL Error: {str(e)}")
     except Exception as e:
-        log.exception("An unexpected error occurred during scan")
+        log.error(f"Unexpected error: {str(e)}")
+
 
 
 @cli.command()
@@ -328,6 +341,7 @@ def trufflehog(target, output_dir):
 
 secrets.add_command(trufflehog)
 cli.add_command(secrets)
+
 
 if __name__ == "__main__":
     cli()
