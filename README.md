@@ -26,7 +26,19 @@ Check out the blog post [WebQL: Using CodeQL To Conduct JavaScript Security Anal
 
 ## 🛠️ Installation
 
-1. To install WebQL and it's dependencies using Poetry, which is useful for development:
+00. The easiest way to get up and running is with `pipx`:
+
+```
+pipx install git+https://github.com/queencitycyber/webql.git
+```
+
+You also need `webcrack`:
+
+```
+npm install -g webcrack
+```
+
+01. To install WebQL and it's dependencies using Poetry, which is useful for development:
 
 ```
 git clone https://github.com/queencitycyber/webql
@@ -34,19 +46,19 @@ cd webql
 poetry install
 ```
 
-2. Activate the virtual environment created by Poetry:
+02. Activate the virtual environment created by Poetry:
 
 ```
 poetry shell
 ```
 
-3. Alternatively, you can run WebQL commands without activating the virtual environment by prefixing them with `poetry run`:
+03. Alternatively, you can run WebQL commands without activating the virtual environment by prefixing them with `poetry run`:
 
 ```
 poetry run webql scan https://example.com
 ```
 
-4. If you don't have or don't want to use Poetry, you can use `pipx`:
+04. If you don't have or don't want to use Poetry, you can use `pipx`:
 
 ```
 git clone https://github.com/queencitycyber/webql
@@ -54,7 +66,7 @@ cd webql
 pipx install .
 ```
 
-5. Docker installation:
+05. Docker installation:
 
 ... not just yet, but see [Microsoft's codeql-container](https://github.com/microsoft/codeql-container)? Untested but passes sniff test!
 
